@@ -1,0 +1,72 @@
+
+Onkar Dubey 
+
+Using Ubuntu 16.04.3 LTS
+
+I successfully figured it out by my self, here is how.
+
+    remove the current ffmpeg by running:
+
+   $ sudo apt-get remove --purge ffmpeg
+
+    Add ppa trusty-media for 14.04:
+
+   $ sudo apt-add-repository ppa:mc3man/trusty-media
+
+    For 16.04, add the following Repo:
+
+   $ sudo apt-add-repository ppa:jonathonf/ffmpeg-3
+
+    Update repo:
+
+   $ sudo apt-get update
+
+    Finally install it:
+
+   $ sudo apt-get install ffmpeg
+
+
+
+ 
+
+Install the dependencies by typing Link:
+
+$ sudo apt-get update
+
+$ sudo apt-get -y --force-yes install autoconf automake build-essential libass-dev libfreetype6-dev \
+libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev  libxcb1-dev libxcb-shm0-dev \
+libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev
+
+ffmpeg
+
+$ mkdir /home/user/ffmpeg
+$ cd /home/user/ffmpeg
+$ wget http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
+$ tar xjvf ffmpeg-snapshot.tar.bz2
+$ cd ffmpeg
+$ PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig"      ./configure \
+--prefix="$HOME/ffmpeg_build" \
+--pkg-config-flags="--static" \
+--extra-cflags="-I$HOME/ffmpeg_build/include" \
+--extra-ldflags="-L$HOME/ffmpeg_build/lib" \
+--bindir="$HOME/bin" \
+--enable-gpl \
+ ......
+ .......
+$ PATH="$HOME/bin:$PATH" make
+$ make install
+$ make distclean
+
+Then execute:
+
+$ home/user/ffmpeg/bin/ffmpeg -i ../input.avs ../videos/output.avi
+
+
+
+
+
+help:
+
+https://www.wowza.com/docs/how-to-use-ffmpeg-with-wowza-media-server-mpeg-ts
+http://ubuntuhandbook.org/index.php/2017/05/install-ffmpeg-3-3-in-ubuntu-16-04-14-04/
+http://www.nerdfirst.net/getting-started-with-ffmpeg/
